@@ -1,0 +1,39 @@
+= Spring-boot, mysql, docker
+
+
+== Pull image from java and mysql
+[source]
+----
+docker pull java
+docker pull mysql
+----
+
+== Run mysql with docker
+[source]
+----
+docker run -it --name=vmysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql
+
+docker exec -it vmysql bash
+mysql -uroot -ppassword
+
+create database db_example;
+----
+
+== Run maven
+[source]
+----
+mvn package spring-boot:repackage
+----
+
+== Build image with Dockerfile and link with mysql database
+[source]
+----
+docker build -t demo-mysql -f Dockerfile .
+docker run --name vdemo-mysql --link vmysql:mysql -d -p 8080:8080 demo-mysql
+----
+
+== Access to default IP and exposed port
+[source]
+----
+http://192.168.99.100:8080/users
+----
