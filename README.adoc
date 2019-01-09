@@ -32,6 +32,15 @@ docker build -t demo-mysql -f Dockerfile .
 docker run --name vdemo-mysql --link vmysql:mysql -d -p 8080:8080 demo-mysql
 ----
 
+
+== Build all the images with docker-compose
+[source]
+----
+docker-compose up --build -d
+
+----
+
+
 == Access to default IP and exposed port
 [source]
 ----

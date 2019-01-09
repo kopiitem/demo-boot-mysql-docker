@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  v_demo-mysql:
+    build: .
+    container_name: demo-mysql-boot
+    image: demo-mysql
+    depends_on:
+      - v_mysql
+    ports:
+      - "8080:8080"
+  v_mysql:
+    container_name: mysqldb
+    image: mysql:latest
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=db_example
+    ports:
+      - "3306:3306"

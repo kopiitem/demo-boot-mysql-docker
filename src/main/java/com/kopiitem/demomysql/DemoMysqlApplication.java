@@ -6,7 +6,9 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Component;
@@ -18,10 +20,18 @@ import java.util.stream.Stream;
 
 
 @SpringBootApplication
+@Configuration
+@EnableAutoConfiguration
 public class DemoMysqlApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoMysqlApplication.class, args);
+        try {
+            Thread.sleep(10000l);
+            SpringApplication.run(DemoMysqlApplication.class, args);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
